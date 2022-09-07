@@ -28,8 +28,15 @@ add_action('admin_menu', 'delvoy_aless_admin_page');
 //generate options in admin page
 function delvoy_custom_settings(){
     register_setting( 'delvoy-setting-group', 'first_name');
+    register_setting('delvoy-setting-group', 'last_name');
+    register_setting('delvoy-setting-group', 'twitter_link');
+    register_setting('delvoy-setting-group', 'facebook_link');
+    register_setting('delvoy-setting-group', 'instagram_link');
     add_settings_section('delvoy-sidebar-options', 'Sidebar options', 'delvoy_sidebar_options', 'delvoy_aless');
-    add_settings_field('sidebar-name', 'First Name', 'delvoy_sidebar_name', 'delvoy_aless', 'delvoy-sidebar-options');
+    add_settings_field('sidebar-name', 'Full Name', 'delvoy_sidebar_name', 'delvoy_aless', 'delvoy-sidebar-options');
+    add_settings_field('sidebar-twitter', 'Twitter link', 'delvoy_sidebar_twitter', 'delvoy_aless', 'delvoy-sidebar-options');
+    add_settings_field('sidebar-facebook', 'Facebook link', 'delvoy_sidebar_facebook', 'delvoy_aless', 'delvoy-sidebar-options');
+    add_settings_field('sidebar-instagram', 'Instagram link', 'delvoy_sidebar_instagram', 'delvoy_aless', 'delvoy-sidebar-options');
 }
 
 
@@ -38,10 +45,25 @@ function delvoy_sidebar_options(){
     echo 'customize your sidebar information';
 }
 
-
 function delvoy_sidebar_name(){
     $firstName = esc_attr(get_option('first_name'));
-    echo '<input type="text" name="first_name" value="">';
+    $lastName = esc_attr(get_option('last_name'));
+    echo '<input type="text" name="first_name" value="'.$firstName.'"> <input type="text" name="last_name" value="'.$lastName.'">';
+}
+
+function delvoy_sidebar_twitter(){
+    $twitterLink = esc_attr(get_option('twitter_link'));
+    echo '<input type="text" name="twitter_link" value="'.$twitterLink.'" placeholder="Twitter link">';
+}
+
+function delvoy_sidebar_facebook(){
+    $facebookLink = esc_attr(get_option('facebook_link'));
+    echo '<input type="text" name="facebook_link" value="'.$facebookLink.'" placeholder="Facebook link">';
+}
+
+function delvoy_sidebar_instagram(){
+    $instagramLink = esc_attr(get_option('instagram_link'));
+    echo '<input type="text" name="instagram_link" value="'.$instagramLink.'" placeholder="Instagram link">';
 }
 
 
