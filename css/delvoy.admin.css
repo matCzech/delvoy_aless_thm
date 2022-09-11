@@ -1,0 +1,38 @@
+/*
+    @package delvoy_aless_thm
+*/
+
+.delvoy-general-form,
+.delvoy-sidebar-preview{
+    display: inline-block;
+    float: left;
+}
+
+.delvoy-sidebar-preview{
+    width: 280px;
+    background: #1f1f1f;
+    padding: 20px;
+    text-align: center;
+    margin-right: 20px;
+}
+
+.delvoy-sidebar{
+   display: block; 
+   text-align: center;
+}
+
+h1.delvoy-username,
+h2.delvoy-description{
+    font-weight: 100;
+    color: #fff;
+}
+
+h1.delvoy-username{
+    font-size: 24px;
+    margin: 0 0 10px;
+}  
+
+h2.delvoy-description{
+    font-size: 13px;
+    margin: 0 0 20px;
+}

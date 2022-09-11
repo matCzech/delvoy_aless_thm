@@ -29,11 +29,13 @@ add_action('admin_menu', 'delvoy_aless_admin_page');
 function delvoy_custom_settings(){
     register_setting( 'delvoy-setting-group', 'first_name');
     register_setting('delvoy-setting-group', 'last_name');
+    register_setting('delvoy-setting-group', 'description_area');
     register_setting('delvoy-setting-group', 'twitter_link');
     register_setting('delvoy-setting-group', 'facebook_link');
     register_setting('delvoy-setting-group', 'instagram_link');
     add_settings_section('delvoy-sidebar-options', 'Sidebar options', 'delvoy_sidebar_options', 'delvoy_aless');
     add_settings_field('sidebar-name', 'Full Name', 'delvoy_sidebar_name', 'delvoy_aless', 'delvoy-sidebar-options');
+    add_settings_field('sidebar-description', 'Description', 'delvoy_sidebar_desc', 'delvoy_aless', 'delvoy-sidebar-options');
     add_settings_field('sidebar-twitter', 'Twitter link', 'delvoy_sidebar_twitter', 'delvoy_aless', 'delvoy-sidebar-options');
     add_settings_field('sidebar-facebook', 'Facebook link', 'delvoy_sidebar_facebook', 'delvoy_aless', 'delvoy-sidebar-options');
     add_settings_field('sidebar-instagram', 'Instagram link', 'delvoy_sidebar_instagram', 'delvoy_aless', 'delvoy-sidebar-options');
@@ -49,6 +51,11 @@ function delvoy_sidebar_name(){
     $firstName = esc_attr(get_option('first_name'));
     $lastName = esc_attr(get_option('last_name'));
     echo '<input type="text" name="first_name" value="'.$firstName.'"> <input type="text" name="last_name" value="'.$lastName.'">';
+}
+
+function delvoy_sidebar_desc(){
+    $description = esc_attr(get_option('description_area'));
+    echo '<input type="text" name="description_area" value="'.$description.'">';
 }
 
 function delvoy_sidebar_twitter(){
