@@ -27,13 +27,17 @@ add_action('admin_menu', 'delvoy_aless_admin_page');
 
 //generate options in admin page
 function delvoy_custom_settings(){
-    register_setting( 'delvoy-setting-group', 'first_name');
+    register_setting('delvoy-setting-group', 'profile_picture');
+    register_setting('delvoy-setting-group', 'first_name');
     register_setting('delvoy-setting-group', 'last_name');
     register_setting('delvoy-setting-group', 'description_area');
     register_setting('delvoy-setting-group', 'twitter_link');
     register_setting('delvoy-setting-group', 'facebook_link');
     register_setting('delvoy-setting-group', 'instagram_link');
+    
     add_settings_section('delvoy-sidebar-options', 'Sidebar options', 'delvoy_sidebar_options', 'delvoy_aless');
+
+    add_settings_field('sidebar-profile-picture', 'Profile picture', 'delvoy_sidebar_picture', 'delvoy_aless', 'delvoy-sidebar-options');
     add_settings_field('sidebar-name', 'Full Name', 'delvoy_sidebar_name', 'delvoy_aless', 'delvoy-sidebar-options');
     add_settings_field('sidebar-description', 'Description', 'delvoy_sidebar_desc', 'delvoy_aless', 'delvoy-sidebar-options');
     add_settings_field('sidebar-twitter', 'Twitter link', 'delvoy_sidebar_twitter', 'delvoy_aless', 'delvoy-sidebar-options');
@@ -69,8 +73,13 @@ function delvoy_sidebar_facebook(){
 }
 
 function delvoy_sidebar_instagram(){
-    $instagramLink = esc_attr(get_option('instagram_link'));
+    $instagramLink = esc_attr(get_option('instagram_link')); 
     echo '<input type="text" name="instagram_link" value="'.$instagramLink.'" placeholder="Instagram link">';
+}
+
+function delvoy_sidebar_picture(){
+    $profilePic = esc_attr(get_option('profile_picture'));
+    echo '<input type="button" value="Upload picture" id="profile-img" class="button button-secondary"><input type="hidden" name="profile_picture" id="profile-picture" value="'.$profilePic.'">';
 }
 
 

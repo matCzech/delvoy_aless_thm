@@ -1,6 +1,7 @@
 <h1>DeLvoy Aless Thm settings</h1>
 <?php settings_errors(); ?>
 <?php
+    $avatar = esc_attr(get_option('profile_picture'));
     $first_name = esc_attr(get_option('first_name'));
     $last_name = esc_attr(get_option('last_name'));
     $description = esc_attr(get_option('description_area'));
@@ -9,6 +10,9 @@
 
 <div class="delvoy-sidebar-preview">
     <div class="delvoy-sidebar">
+        <div class="image-container">
+            <div id="profile-picture-preview" class="profile-picture" style="background-image: url(<?php print $avatar ?>)"></div>
+        </div>
         <h1 class="delvoy-username"><?php print $full_name; ?></h1>
         <h2 class="delvoy-description">
             <?php print $description ?>
