@@ -1,4 +1,4 @@
-<h1>DeLvoy Aless Thm settings</h1>
+<h1>DeLvoy Aless Thm sidebar</h1>
 <?php settings_errors(); ?>
 <?php
     $avatar = esc_attr(get_option('profile_picture'));
@@ -27,5 +27,5 @@
 <form method="post" action="options.php" class="delvoy-general-form">
     <?php settings_fields('delvoy-setting-group'); ?>
     <?php do_settings_sections('delvoy_aless'); ?>
-    <?php submit_button(); ?>
+    <?php submit_button('Zapisz zmiany', 'primary', 'submitbtn'); ?>
 </form>

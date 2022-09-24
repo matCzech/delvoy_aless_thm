@@ -28,4 +28,18 @@ jQuery(document).ready(function($){
 
     });
 
+
+    $('#delete-avatar').on('click', function(e){
+
+        e.preventDefault();
+        var answer = confirm("Are you sure you want to remove your profile picture?");
+        if(answer == true){
+            $('#profile-picture').val('');
+            $('.delvoy-general-form').submit();
+        }else{
+            console.log('No, don\'t delete it');
+        }
+        return;
+    });
+
 });
