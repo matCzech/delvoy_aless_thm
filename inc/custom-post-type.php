@@ -14,7 +14,9 @@
 $contact_form = get_option('activate_form');
 
 if($contact_form == 1){
-    delvoy_contactform_post_type();
+    add_action('init', 'delvoy_contactform_post_type');
+    add_filter('manage_delvoy-contact-form_posts_columns', 'set_delvoy_contact_cols');
+    add_action('manage_delvoy-contact-form_posts_custom_column', 'delvoy_contact_post_columns', 10, 2);
 }
 
 //Contact form CPT
@@ -38,4 +40,26 @@ function delvoy_contactform_post_type(){
     ];
 
     register_post_type('delvoy-contact-form' ,$args);
+}
+
+function set_delvoy_contact_cols(){
+    $newColumns = [];
+    $newColumns['title'] = 'Full name';
+    $newColumns['message'] = 'Message';
+    $newColumns['email'] = 'Email';
+    $newColumns['date'] = 'Date';
+    return $newColumns;
+}
+
+function delvoy_contact_post_columns($column, $post_id){
+    switch($column){
+        //Message column
+        case 'message' : 
+        echo get_the_excerpt();
+        break;
+
+        //Email column
+        case 'email' : 
+        break;
+    }
 }
