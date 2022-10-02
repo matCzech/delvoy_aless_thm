@@ -17,7 +17,7 @@ function delvoy_aless_admin_page(){
 
     //generate admin subpages
     add_submenu_page('delvoy_aless', 'DeLvoy Aless sidebar', 'Sidebar', 'manage_options', 'delvoy_aless', 'delvoy_theme_settings_page');
-    add_submenu_page('delvoy_aless', 'DeLvoy Aless CSS', 'Custom CSS', 'manage_options', 'delvoy_custom_css', 'delvoy_theme_options_page');
+    add_submenu_page('delvoy_aless', 'DeLvoy Aless CSS', 'Custom CSS', 'manage_options', 'delvoy_custom_css', 'delvoy_theme_customcss_page');
     add_submenu_page('delvoy_aless', 'DeLvoy Contact Form', 'Contact form', 'manage_options', 'delvoy_theme_contact', 'delvoy_theme_contactform_page');
     add_submenu_page('delvoy_aless', 'DeLvoy theme options', 'Theme options', 'manage_options', 'delvoy_theme_options', 'delvoy_theme_options_page');
 
@@ -62,6 +62,13 @@ function delvoy_custom_settings(){
     add_settings_section('delvoy-contactform-section', 'Contact form', 'delvoy_contactform_section', 'delvoy_theme_contact');
 
     add_settings_field('custom-contact-form', 'Activate contact form', 'delvoy_activate_contactform', 'delvoy_theme_contact', 'delvoy-contactform-section');
+
+    //Custom CSS options
+    register_setting('delvoy-custom-css-options', 'delvoy_css', 'delvoy_santize_custom_css');
+
+    add_settings_section('delvoy-custom-css-section', 'Custom CSS', 'delvoy_custom_css_callback', 'delvoy_custom_css');
+
+    add_settings_field('custom-css', 'Insert your custom CSS', 'delvoy_custom_css_editor', 'delvoy_custom_css', 'delvoy-custom-css-section');
 }
 
 
@@ -133,6 +140,21 @@ function delvoy_activate_contactform(){
     echo '<label><input type="checkbox" id="activate_form" name="activate_form" value="1" '.$checked.'></label>';
 }
 
+//generate content & forms for custom css page
+function delvoy_custom_css_callback(){
+    echo 'Customize your theme with your own CSS';
+}
+
+function delvoy_custom_css_editor(){
+    $custom_css = get_option('delvoy_css');
+    $custom_css = (empty($custom_css) ? "/*DeLvoy Theme Custom CSS*/" : $custom_css);
+    echo '<div id="delvoy-custom-css">'.$custom_css.'</div><textarea id="delvoy_css" name="delvoy_css" style="display:block;visibility:hidden;"></textarea>';
+}
+
+function delvoy_santize_custom_css($input){
+    $output = esc_textarea($input);
+    return $output;
+}
 
 //pages for custom option in admin page
 function delvoy_theme_create_page(){
@@ -147,8 +169,8 @@ function delvoy_theme_contactform_page(){
     require_once(get_template_directory() . '/inc/templates/delvoy-theme-contactform.php');
 }
 
-
-function delvoy_theme_settings_page(){
-
+function delvoy_theme_customcss_page(){
+    require_once(get_template_directory() . '/inc/templates/delvoy-custom-css.php');
 }
+
 
