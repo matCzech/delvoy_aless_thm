@@ -36,3 +36,21 @@ function delvoy_load_admin_scripts($hook){
     }
 }
 add_action('admin_enqueue_scripts', 'delvoy_load_admin_scripts');
+
+
+/*
+#########################################################
+                FRONTEND ENQUEUE FUNCTIONS
+#########################################################
+*/
+
+function delvoy_load_scripts(){
+    wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '5.1.3', 'all');
+    wp_enqueue_style('delvoy-css', get_template_directory_uri() . '/css/delvoy.css', array(), '1.0.0', 'all');
+
+    wp_deregister_script('jquery');
+    wp_register_script('jquery', get_template_directory_uri() . '/js/jquery-3.6.1.min.js', false, '3.6.1', true);
+    wp_enqueue_script('jquery');
+    wp_enqueue_script('bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array('jquery'), '5.1.3', true);
+}
+add_action('wp_enqueue_scripts', 'delvoy_load_scripts');
