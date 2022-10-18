@@ -46,7 +46,7 @@ add_action('admin_enqueue_scripts', 'delvoy_load_admin_scripts');
 
 function delvoy_load_scripts(){
     wp_enqueue_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '5.1.3', 'all');
-    wp_enqueue_style('delvoy-css', get_template_directory_uri() . '/css/delvoy.css', array(), '1.0.0', 'all');
+    wp_enqueue_style('delvoy-css', get_template_directory_uri() . '/css/delvoy.css', array(), filemtime(get_template_directory() . '/css/delvoy.css'), 'all');
     wp_enqueue_style('poppins', 'https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;600&display=swap');
 
     wp_deregister_script('jquery');
