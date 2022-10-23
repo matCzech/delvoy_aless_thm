@@ -32,7 +32,7 @@ function deloy_posted_footer(){
 
     if(comments_open()){
         if($comments_num == 0){
-            $comments = __('No comments yet');
+            $comments = __('No comments');
         }elseif($comments_num > 1){
             $comments = $comments_num . __(' comments');
         }else{
@@ -43,6 +43,6 @@ function deloy_posted_footer(){
         $comments = __('Comments are closed');
     }
 
-    return '<div class="blog-footer-container"><div class="row"><div class="col-xs-12 col-sm-6">'.get_the_tag_list('<div class="tags-list">' ,'', '</div>').'</div><div class="col-xs-12 col-sm-6">'.$comments.'</div></div></div>';
+    return '<div class="blog-footer-container"><div class="row"><div class="col-xs-12 col-sm-6 text-start">'.get_the_tag_list('<div class="tags-list">' ,'', '</div>').'</div><div class="col-xs-12 col-sm-6 text-end">'.$comments.'</div></div></div>';
 }
 
