@@ -14,7 +14,10 @@
 
             </div><!--.container-->
             <div class="container text-center">
-                <a class="btn btn-primary delvoy-load-more" data-page="1" data-url="<?php echo admin_url('admin-ajax.php'); ?>">Wczytaj więcej</a>
+                <a class="btn-delvoy-load delvoy-load-more" data-page="1" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
+                <span class="dashicons dashicons-image-rotate delvoy-loading"></span>
+                <span class="text">Wczytaj więcej</span>
+                </a>
             </div><!--.container-->
         </main>
     </div><!--#primary-->
