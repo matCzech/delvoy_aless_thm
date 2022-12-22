@@ -74,6 +74,15 @@ a,a:hover, a:focus{
 
 
 /*AJAX LOAD -----------------------------------------*/
+.delvoy-posts-container article{
+    transform: translateY(100px);
+    transition: all 0.3s;
+    opacity: 0;
+}
+.delvoy-posts-container article.reveal{
+    transform: translateY(0px);
+    opacity: 1;
+}
 .btn-delvoy-load{
     display: block;
     width: 200px;

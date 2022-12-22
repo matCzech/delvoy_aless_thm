@@ -1,5 +1,7 @@
 jQuery(document).ready(function($){
 
+revealPosts();
+
 /*Ajax functions*/
 $(document).on('click', '.delvoy-load-more:not(.loading)', function(){
     var that = $(this);
@@ -23,12 +25,28 @@ $(document).on('click', '.delvoy-load-more:not(.loading)', function(){
         success: function(response){
             that.data('page', newPage);
             $('.delvoy-posts-container').append(response);
-            setTimeout(function(){
-                that.removeClass('loading').find('.text').slideDown();
-                that.find('.delvoy-loading').removeClass('spin');
-            }, 1000);
+            that.removeClass('loading').find('.text').slideDown();
+            that.find('.delvoy-loading').removeClass('spin');
+
+            revealPosts();
+
         }
     });
 });
+
+/*HELPER FUNCTIONS*/
+
+function revealPosts(){
+    var posts = $('article:not(.reveal)');
+    var i = 0;
+    setInterval(function(){
+        if(i >= posts.length) return false;
+
+        var el = posts[i];
+        $(el).addClass('reveal');
+
+        i++;
+    }, 200);
+}
 
 });
